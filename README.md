@@ -44,7 +44,7 @@ Encountering difficulties running your deep learning model on a GPU? Here are st
 ### Software
 ```
 - Python 3.8–3.11
-- NVIDIA GPU drivers version 450.80.02 or higher (Optional)
+- NVIDIA GPU drivers version 450.80.02 or higher (Optional)i
 - Miniconda (Optional)
 ```
 
@@ -69,11 +69,24 @@ If not, follow those step bellow (2 Method):
     ```bash
     sudo apt install build-essential libglvnd-dev pkg-config -y 
     ```
-3. Install nvidia driver
+3. Blacklist nouveau
+   > It does not work with CUDA and must be disabled
+    ```bash
+    sudo bash -c "echo blacklist nouveau > /etc/modprobe.d/blacklist-nvidia-nouveau.conf" 
+    sudo bash -c "echo options nouveau modeset=0 >> /etc/modprobe.d/blacklist-nvidia-nouveau.conf" 
+    ```
+4. Remove old NVIDIA driver (optional)
+    > Desktop maybe temporary at lower resolution after this step
+    ```bash
+    sudo apt-get remove '^nvidia-*' -y 
+    sudo apt autoremove -y 
+    reboot
+    ```
+5. Install nvidia driver
     ```bash
     sudo apt install nvidia-driver-535 -y 
     ```
-4. The Nvidia driver is now installed. Reboot your system
+6. The Nvidia driver is now installed. Reboot your system
     ```bash
     reboot 
     ```
