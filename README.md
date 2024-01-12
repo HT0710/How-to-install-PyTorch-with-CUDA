@@ -1,4 +1,4 @@
-# <p align="center">How to install PyTorch</p>
+# <p align="center">How to install PyTorch with CUDA</p>
 
 
 ## Introduction
